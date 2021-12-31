@@ -1,0 +1,104 @@
+section.cover .cover-main {
+    z-index: 100;
+}
+section.cover.has-mask .mask {
+    background-color: #fff;
+    opacity: .1!important;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+section.cover h1 .anchor span {
+    font-family: 'Lobster', cursive;
+    color: var(--theme-color);
+}
+
+section.cover h2 .anchor span {
+    font-family: 'Lobster', cursive;
+    font-size: 24px;
+    color: var(--theme-color);
+}
+
+section.cover .cover-main > p:last-child a .iconfont {
+    font-size: 1em;
+}
+
+.sidebar > h1 a {
+    font-family: 'Lobster', cursive;
+}
+
+.scrollbar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius   : 10px;
+    background-color: var(--theme-color);
+    background-image: -webkit-linear-gradient(
+            45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent
+    );
+}
+.scrollbar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background   : #ededed;
+    border-radius: 10px;
+}
+
+.code-toolbar{
+    position: relative;
+    background: #000;
+    padding-top: 20px;
+    border-radius: 5px;
+}
+
+
+.pre-mac{
+    position: absolute;
+    top: 8px;
+    left: 8px;
+
+    width: 100px;
+    z-index: 99;
+}
+.mac{
+    border-radius: 8px;
+    background-color: #393939 !important;
+
+}
+.markdown-section pre>code{
+    background-color: #393939 !important;
+    color: #a98bb8;
+}
+.pre-mac>span{
+    float: left;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+.pre-mac>span:nth-child(1){
+    background: #ff5f57;
+}
+.pre-mac>span:nth-child(2){
+    background: #febc2e;
+}
+.pre-mac>span:nth-child(3){
+    background: #27c840;
+}
+body{
+    /*color: #35cd4b;*/
+}
+
+
