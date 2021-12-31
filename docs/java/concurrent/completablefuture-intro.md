@@ -1,11 +1,3 @@
----
-title:  CompletableFuture入门
-category: Java
-tag:
-  - Java并发
----
-
-
 自己在项目中使用 `CompletableFuture` 比较多，看到很多开源框架中也大量使用到了 `CompletableFuture` 。
 
 因此，专门写一篇文章来介绍这个 Java 8 才被引入的一个非常有用的用于异步编程的类。
@@ -21,7 +13,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 
 `CompletableFuture` 除了提供了更为好用和强大的 `Future` 特性之外，还提供了函数式编程的能力。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210902092441434.png)
+![](images/image-20210902092441434.png)
 
 `Future` 接口有 5 个方法：
 
@@ -31,7 +23,7 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 - `get()` ：等待任务执行完成并获取运算结果。
 - `get(long timeout, TimeUnit unit)` ：多了一个超时时间。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210902093026059.png)
+![](images/image-20210902093026059.png)
 
 `CompletionStage<T>` 接口中的方法比较多，`CompletableFuture` 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。
 

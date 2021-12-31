@@ -86,11 +86,11 @@ Java 集合框架如下图所示：
 
 > 另外推荐一篇把双向链表讲清楚的文章：[https://juejin.cn/post/6844903648154271757](https://juejin.cn/post/6844903648154271757)
 
-![双向链表](images/循环链表.png)
+![双向链表](images/循环链表.png ':size=45%')
 
 **双向循环链表：** 最后一个节点的 next 指向 head，而 head 的 prev 指向最后一个节点，构成一个环。
 
-![双向循环链表](images/双向循环链表.png)
+![双向循环链表](images/双向循环链表.png ':size=45%')
 
 #### 补充内容:RandomAccess 接口
 
@@ -527,13 +527,13 @@ static int hash(int h) {
 
 所谓 **“拉链法”** 就是：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。
 
-![jdk1.8之前的内部结构-HashMap](images/jdk1.8之前的内部结构-HashMap.png)
+![jdk1.8之前的内部结构-HashMap](images/jdk1.8之前的内部结构-HashMap.png ':size=55% :class=imgCenter')
 
 #### JDK1.8 之后
 
 相比于之前的版本， JDK1.8 之后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）（将链表转换成红黑树前会判断，如果当前数组的长度小于 64，那么会选择先进行数组扩容，而不是转换为红黑树）时，将链表转化为红黑树，以减少搜索时间。
 
-![jdk1.8之后的内部结构-HashMap](images/jdk1.8之后的内部结构-HashMap.png)
+![jdk1.8之后的内部结构-HashMap](images/jdk1.8之后的内部结构-HashMap.png ':size=75% :class=imgCenter')
 
 > TreeMap、TreeSet 以及 JDK1.8 之后的 HashMap 底层都用到了红黑树。红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。
 
@@ -566,19 +566,19 @@ static int hash(int h) {
 
 **Hashtable:**
 
-![Hashtable全表锁](images/HashTable全表锁.png)
+![Hashtable全表锁](images/HashTable全表锁.png ':size=70%')
 
 <p style="text-align:right;font-size:13px;color:gray">https://www.cnblogs.com/chengxiao/p/6842045.html></p>
 
 **JDK1.7 的 ConcurrentHashMap：**
 
-![JDK1.7的ConcurrentHashMap](images/ConcurrentHashMap分段锁.png)
+![JDK1.7的ConcurrentHashMap](images/ConcurrentHashMap分段锁.png ':size=65%')
 
 <p style="text-align:right;font-size:13px;color:gray">https://www.cnblogs.com/chengxiao/p/6842045.html></p>
 
 **JDK1.8 的 ConcurrentHashMap：**
 
-![Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）](./images/java8_concurrenthashmap.png)
+![Java8 ConcurrentHashMap 存储结构（图片来自 javadoop）](./images/java8_concurrenthashmap.png ':size=65%')
 
 JDK1.8 的 `ConcurrentHashMap` 不再是 **Segment 数组 + HashEntry 数组 + 链表**，而是 **Node 数组 + 链表 / 红黑树**。不过，Node 只能用于链表的情况，红黑树的情况需要使用 **`TreeNode`**。当冲突链表达到一定长度时，链表会转换成红黑树。
 
