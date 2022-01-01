@@ -23,7 +23,15 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
 - `get()` ：等待任务执行完成并获取运算结果。
 - `get(long timeout, TimeUnit unit)` ：多了一个超时时间。
 
+
+<details>
+<summary>图片:CompletionStage 接口中的方法</summary>
+
 ![](images/image-20210902093026059.png)
+
+</details>
+
+
 
 `CompletionStage<T>` 接口中的方法比较多，`CompletableFuture` 的函数式能力就是这个接口赋予的。从这个接口的方法参数你就可以发现其大量使用了 Java8 引入的函数式编程。
 

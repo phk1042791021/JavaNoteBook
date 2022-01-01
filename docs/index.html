@@ -14,10 +14,13 @@
 <!--          title="docsify-darklight-theme"-->
 <!--          type="text/css"-->
 <!--  />-->
-
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />-->
   <link rel="stylesheet" href="_media/custom.css">
 <!--  <link rel="stylesheet" href="_media/prism.css">-->
   <link rel="stylesheet" href="_media/code_dark.css">
+
+  <link rel="stylesheet" href="_media/waifu.css" id="live2d_css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
 </head>
 
 <body class="scrollbar">
@@ -28,6 +31,7 @@
   <div id="app"></div>
   <script>
     var color = "#6eb493"
+    var text_color = "#364149 !important"
     window.$docsify = {
       name: 'yunai',
       repo: 'https://github.com/phk1042791021/JavaNoteBook',
@@ -45,23 +49,80 @@
             // $("p>img").parent().css("text-align", "center");
             $(".imgCenter").parent().css("text-align", "center")
             $("pre>code").before('<div class="pre-mac"><span></span><span></span><span></span></div>');
+            document.querySelectorAll(".sidebar-nav > ul > li").forEach(
+                    function(node, index, nodelist) {
+                      var span = document.createElement("div");
+
+                      console.log(node)
+                      span.innerHTML =  node.firstChild.data;
+                      span.style.cursor = "pointer";
+                      span.classList.add("root_title");
+                      span.classList.add("ul-after-triangle");
+                      span.onclick = function(event) {
+                        // if (event.target.classList.contains("ul-after-open")){
+                        //   event.target.classList.remove("ul-after-open")
+                        // }else {
+                        //   event.target.classList.add("ul-after-open")
+                        // }
+
+                        var ul = event.target.nextElementSibling;
+                        if (ul.style.display === "none") {
+                          event.target.classList.add("ul-after-open")
+                          ul.style.display = "block";
+                        } else {
+                          event.target.classList.remove("ul-after-open")
+                          ul.style.display = "none";
+                        }
+                      };
+                      node.firstChild.replaceWith(span);
+                      node.lastChild.style.display = "none";
+                    });
+            var active = document.querySelector(".sidebar-nav li.active");
+            if (active) {
+              active.parentElement.style.display = "block";
+            }
           });
+
+
+          // hook.afterEach(function(html, next) {
+          //   // 解析成 html 后调用。
+          //   // beforeEach 和 afterEach 支持处理异步逻辑
+          //   // ...
+          //   // 异步处理完成后调用 next(html) 返回结果
+          //   console.log(html)
+          //
+          //   next(html);
+          //   $(".hide_ul>ul>li>a").on("click",function () {
+          //
+          //     $(this).parent().parent().parent().css("display:block")
+          //   })
+          // });
+
+
+
+            // $(document).on("click",'.collapse_transition',
+            //       function(){
+            //         $(this).next().toggle("slow");
+            //         // $(this).next().toggle("slow");
+            //       }
+            // );
         }
       ]
     }
+
   </script>
   <!-- Docsify v4 -->
+
+  <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
   <script typet="text/javascript" src="_media/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+<!--  <script src="_media/docsify.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+<!--  <script src="_media/collapse.js"></script>-->
   <!-- plugins -->
+<!--  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>-->
 
-<!--  <script-->
-<!--          src="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/index.min.js"-->
-<!--          type="text/javascript">-->
-<!--  </script>-->
-<!--  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>-->
 </body>
 </html>

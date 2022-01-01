@@ -6,7 +6,7 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 
 并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,如下图所示。
 
-![JUC原子类概览](images/JUC原子类概览.png)
+![JUC原子类概览](images/JUC原子类概览.png ':size=30%')
 
 根据操作的数据类型，可以将 JUC 包中的原子类分为 4 类
 

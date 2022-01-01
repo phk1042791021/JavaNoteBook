@@ -1,9 +1,11 @@
+
 section.cover .cover-main {
     z-index: 100;
 }
+
 section.cover.has-mask .mask {
     background-color: #fff;
-    opacity: .1!important;
+    opacity: .1 !important;
     position: absolute;
     top: 0;
     height: 100%;
@@ -31,12 +33,13 @@ section.cover .cover-main > p:last-child a .iconfont {
 
 .scrollbar::-webkit-scrollbar {
     /*滚动条整体样式*/
-    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
     height: 1px;
 }
+
 .scrollbar::-webkit-scrollbar-thumb {
     /*滚动条里面小方块*/
-    border-radius   : 10px;
+    border-radius: 10px;
     background-color: var(--theme-color);
     background-image: -webkit-linear-gradient(
             45deg,
@@ -49,14 +52,15 @@ section.cover .cover-main > p:last-child a .iconfont {
             transparent
     );
 }
+
 .scrollbar::-webkit-scrollbar-track {
     /*滚动条里面轨道*/
-    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
-    background   : #ededed;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #ededed;
     border-radius: 10px;
 }
 
-.code-toolbar{
+.code-toolbar {
     position: relative;
     background: #000;
     padding-top: 20px;
@@ -64,7 +68,7 @@ section.cover .cover-main > p:last-child a .iconfont {
 }
 
 
-.pre-mac{
+.pre-mac {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -72,33 +76,65 @@ section.cover .cover-main > p:last-child a .iconfont {
     width: 100px;
     z-index: 99;
 }
-.mac{
+
+.mac {
     border-radius: 8px;
     background-color: #393939 !important;
 
 }
-.markdown-section pre>code{
+
+.markdown-section pre > code {
     background-color: #393939 !important;
     color: #a98bb8;
 }
-.pre-mac>span{
+
+.pre-mac > span {
     float: left;
     width: 12px;
     height: 12px;
     border-radius: 50%;
     margin-right: 7px;
 }
-.pre-mac>span:nth-child(1){
+
+.pre-mac > span:nth-child(1) {
     background: #ff5f57;
 }
-.pre-mac>span:nth-child(2){
+
+.pre-mac > span:nth-child(2) {
     background: #febc2e;
 }
-.pre-mac>span:nth-child(3){
+
+.pre-mac > span:nth-child(3) {
     background: #27c840;
 }
-body{
+
+body {
     /*color: #35cd4b;*/
 }
+
+.sidebar::-webkit-scrollbar {
+    width: 0 !important
+}
+
+.hide_ul{
+    display: none;
+}
+.show_ul{
+    display: block;
+}
+.root_title{
+    -moz-user-select:none; /*火狐*/
+    -webkit-user-select:none; /*webkit浏览器*/
+    -ms-user-select:none; /*IE10*/
+    user-select:none;
+    font-weight: bold;
+
+}
+
+.ul-after-open {
+    color: #7ec699;
+
+}
+
 
 

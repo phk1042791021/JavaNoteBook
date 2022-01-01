@@ -1,6 +1,6 @@
 ## 1.synchronized 关键字
 
-![](images/interview-questions/synchronized关键字.png)
+![](images/interview-questions/synchronized关键字.png ':size=70%')
 
 ### 1.1.说一说自己对于 synchronized 关键字的了解
 
@@ -116,7 +116,14 @@ public class SynchronizedDemo {
 
 通过 JDK 自带的 `javap` 命令查看 `SynchronizedDemo` 类的相关字节码信息：首先切换到类的对应目录执行 `javac SynchronizedDemo.java` 命令生成编译后的 .class 文件，然后执行`javap -c -s -v -l SynchronizedDemo.class`。
 
-![synchronized关键字原理](images/synchronized关键字原理.png)
+<details>
+<summary>结果如图</summary>
+
+![synchronized关键字原理](images/synchronized关键字原理.png ':size=80%')
+
+</details>
+
+
 
 从上面我们可以看出：
 
@@ -143,7 +150,14 @@ public class SynchronizedDemo2 {
 
 ```
 
-![synchronized关键字原理](images/synchronized关键字原理2.png)
+<details>
+<summary>结果如图</summary>
+
+![synchronized关键字原理](images/synchronized关键字原理2.png ':size=80%')
+
+</details>
+
+
 
 `synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取得代之的确实是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。JVM 通过该 `ACC_SYNCHRONIZED` 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。
 
@@ -203,7 +217,7 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 为了更好地理解，我画了一个简单的 CPU Cache 示意图如下（实际上，现代的 CPU Cache 通常分为三层，分别叫 L1,L2,L3 Cache）:
 
-![CPU Cache](images/303a300f-70dd-4ee1-9974-3f33affc6574.png)
+![CPU Cache](images/303a300f-70dd-4ee1-9974-3f33affc6574.png ':size=30%')
 
 **CPU Cache 的工作方式：**
 
@@ -215,13 +229,13 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 在 JDK1.2 之前，Java 的内存模型实现总是从**主存**（即共享内存）读取变量，是不需要进行特别的注意的。而在当前的 Java 内存模型下，线程可以把变量保存**本地内存**（比如机器的寄存器）中，而不是直接在主存中进行读写。这就可能造成一个线程在主存中修改了一个变量的值，而另外一个线程还继续使用它在寄存器中的变量值的拷贝，造成**数据的不一致**。
 
-![JMM(Java内存模型)](images/0ac7e663-7db8-4b95-8d8e-7d2b179f67e8.png)
+![JMM(Java内存模型)](images/0ac7e663-7db8-4b95-8d8e-7d2b179f67e8.png ':size=30%')
 
 要解决这个问题，就需要把变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
 所以，**`volatile` 关键字 除了防止 JVM 的指令重排 ，还有一个重要的作用就是保证变量的可见性。**
 
-![volatile关键字的可见性](images/d49c5557-140b-4abf-adad-8aac3c9036cf.png)
+![volatile关键字的可见性](images/d49c5557-140b-4abf-adad-8aac3c9036cf.png ':size=50%')
 
 ### 2.3. 并发编程的三个重要特性
 
@@ -373,7 +387,7 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话，会使用 `Thread`内部都是使用仅有那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
 
-![ThreadLocal数据结构](images/threadlocal数据结构.png)
+![ThreadLocal数据结构](images/threadlocal数据结构.png ':size=65%')
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
@@ -757,9 +771,15 @@ public void execute(Runnable command) {
 
 所以，所谓原子类说简单点就是具有原子/原子操作特征的类。
 
-并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,如下图所示。
+并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,
 
-![JUC原子类概览](images/JUC原子类概览.png)
+<details>
+<summary>如图所示</summary>
+
+![JUC原子类概览](images/JUC原子类概览.png ':size=35%')
+
+</details>
+
 
 ### 5.2. JUC 包中的原子类是哪 4 类?
 
@@ -857,7 +877,13 @@ CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则�
 
 AQS 的全称为（`AbstractQueuedSynchronizer`），这个类在` java.util.concurrent.locks `包下面。
 
-![AQS类](images/AQS类.png)
+<details>
+<summary>如图所示</summary>
+
+![AQS类](images/AQS类.png ':size=35%')
+
+</details>
+
 
 AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出大量应用广泛的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
 
@@ -877,7 +903,7 @@ AQS 原理这部分参考了部分博客，在 5.2 节末尾放了链接。
 
 看个 AQS(AbstractQueuedSynchronizer)原理图：
 
-![AQS原理图](images/AQS原理图.png)
+![AQS原理图](images/AQS原理图.png ':size=70%')
 
 AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。
 

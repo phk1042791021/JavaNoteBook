@@ -33,7 +33,7 @@ AQS 核心思想是，如果被请求的共享资源空闲，则将当前请求�
 
 看个 AQS(`AbstractQueuedSynchronizer`)原理图：
 
-![enter image description here](images/CLH.png)
+![enter image description here](images/CLH.png ':size=70%')
 
 AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。
 
