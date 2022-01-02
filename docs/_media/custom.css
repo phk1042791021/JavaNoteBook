@@ -132,7 +132,7 @@ body {
 }
 
 .ul-after-open {
-    color: #7ec699;
+    color: var(--theme-color);
 
 }
 
