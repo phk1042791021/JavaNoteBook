@@ -3551,6 +3551,7 @@
         e.open("GET", t, !0), e.responseType = "arraybuffer", e.onload = function () {
             switch (e.status) {
                 case 200:
+                    console.log(2222)
                     requestCache[t] = e.response;
                     i(e.response);
                     break;

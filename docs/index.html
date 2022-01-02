@@ -40,6 +40,7 @@
             $("p>strong").css("color", color)
             $("h2>a>span").css("color", color)
             $("h3>a>span").css("color", color)
+            $("h4>a>span").css("color", color)
             $("pre").addClass("mac").css("white-space", "pre-wrap");
             // $("p>img").parent().css("text-align", "center");
             $(".imgCenter").parent().css("text-align", "center")
@@ -74,7 +75,10 @@
                     });
             var active = document.querySelector(".sidebar-nav li.active");
             if (active) {
+              console.log(active.parentElement.previousElementSibling)
+              active.parentElement.previousElementSibling.classList.add("ul-after-open")
               active.parentElement.style.display = "block";
+
             }
           });
 
@@ -92,7 +96,6 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/phk1042791021/JavaNoteBook/docs/waifu/pio.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/phk1042791021/JavaNoteBook/docs/waifu/l2d.js"></script>
-<!--  <script src="_media/docsify.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
