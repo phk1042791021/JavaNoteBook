@@ -134,6 +134,17 @@ body {
 .ul-after-open {
     color: var(--theme-color);
 }
+.search{
+    border-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 5px !important;
+}
+.search input{
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-button: -10px !important;
+    border-radius: 12px ;
+}
 
 
 
