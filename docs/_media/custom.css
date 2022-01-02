@@ -145,6 +145,19 @@ body {
     margin-button: -10px !important;
     border-radius: 12px ;
 }
+p strong{
+    color: var(--theme-color) !important;
+}
+h2 a span{
+    color: var(--theme-color) !important;
+}
+h3 a span{
+    color: var(--theme-color) !important;
+}
+h4 a span{
+    color: var(--theme-color) !important;
+}
+
 
 
 
