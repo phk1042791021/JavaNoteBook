@@ -29,6 +29,17 @@
     window.$docsify = {
       name: 'yunai',
       repo: 'https://github.com/phk1042791021/JavaNoteBook',
+      search: {
+        paths:'auto',
+        placeholder: {
+          '/zh-cn/': '搜索',
+          '/': 'Type to search'
+        },
+        noData: {
+          '/zh-cn/': '找不到结果',
+          '/': 'No Results'
+        }
+      },
       coverpage: true,
       loadSidebar: true,
       loadNavbar: true,
@@ -99,7 +110,7 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 
   <script>var pio = new Paul_Pio({
     "mode": "fixed",
