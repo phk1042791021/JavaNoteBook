@@ -8,19 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.css">
-<!--  <link-->
-<!--          rel="stylesheet"-->
-<!--          href="//cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/dist/style.min.css"-->
-<!--          title="docsify-darklight-theme"-->
-<!--          type="text/css"-->
-<!--  />-->
-<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />-->
   <link rel="stylesheet" href="_media/custom.css">
-<!--  <link rel="stylesheet" href="_media/prism.css">-->
   <link rel="stylesheet" href="_media/code_dark.css">
-
-  <link rel="stylesheet" href="_media/waifu.css" id="live2d_css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="waifu/pio.css" />
 </head>
 
 <body class="scrollbar">
@@ -29,6 +19,10 @@
     <a href="#/zh-cn/">中文</a>
   </nav>
   <div id="app"></div>
+  <div class="pio-container right">
+    <div class="pio-action"></div>
+    <canvas id="pio" width="140" height="200"></canvas>
+  </div>
   <script>
     var color = "#6eb493"
     var text_color = "#364149 !important"
@@ -84,28 +78,6 @@
           });
 
 
-          // hook.afterEach(function(html, next) {
-          //   // 解析成 html 后调用。
-          //   // beforeEach 和 afterEach 支持处理异步逻辑
-          //   // ...
-          //   // 异步处理完成后调用 next(html) 返回结果
-          //   console.log(html)
-          //
-          //   next(html);
-          //   $(".hide_ul>ul>li>a").on("click",function () {
-          //
-          //     $(this).parent().parent().parent().css("display:block")
-          //   })
-          // });
-
-
-
-            // $(document).on("click",'.collapse_transition',
-            //       function(){
-            //         $(this).next().toggle("slow");
-            //         // $(this).next().toggle("slow");
-            //       }
-            // );
         }
       ]
     }
@@ -113,16 +85,73 @@
   </script>
   <!-- Docsify v4 -->
 
-  <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
-  <script typet="text/javascript" src="_media/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.13.0/ui/widget.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+  <script src="waifu/pio.js"></script>
+  <script src="waifu/l2d.js"></script>
 <!--  <script src="_media/docsify.js"></script>-->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+
+  <script>var pio = new Paul_Pio({
+    "mode": "fixed",
+    "hidden": true,
+    "content": {
+      "welcome": ["欢迎来到保罗的小宇宙！", "今天天气不错，一起来玩吧！", "博主每天都有些折腾记录，欢迎前往他的小窝阅读~"],
+      "custom": [
+        {"selector": ".comment-form", "text": "欢迎参与本文评论，别发小广告噢~"},
+        {"selector": ".home-social a:last-child", "text": "在这里可以了解博主的日常噢~"},
+        {"selector": ".post-item a", "type": "read"},
+        {"selector": ".post-content a, .page-content a", "type": "link"}
+      ]
+    },
+    "night": "single.night()",
+    "model": ["waifu/model/umaru/13.json"]
+  });</script>
 <!--  <script src="_media/collapse.js"></script>-->
   <!-- plugins -->
 <!--  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>-->
+<!--  waifu-->
+
+<!--  <div class="waifu">-->
+<!--    <div class="waifu-tips"></div>-->
+<!--    <canvas id="live2d" class="live2d"></canvas>-->
+<!--    <div class="waifu-tool">-->
+<!--      <span class="fui-home"></span>-->
+<!--      <span class="fui-chat"></span>-->
+<!--      <span class="fui-eye"></span>-->
+<!--      <span class="fui-user"></span>-->
+<!--      <span class="fui-photo"></span>-->
+<!--      <span class="fui-info-circle"></span>-->
+<!--      <span class="fui-cross"></span>-->
+<!--      <span id="showdefault"></span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <script src="waifu/waifu-tips.js?v=1.4.2"></script>-->
+<!--  <script src="waifu/live2d.js?v=1.0.5"></script>-->
+<!--  <script type="text/javascript">-->
+<!--    /* 可直接修改部分参数 */-->
+<!--    live2d_settings['modelId'] = 0;                  // 默认模型 ID-->
+<!--    live2d_settings['modelTexturesId'] = 0;         // 默认材质 ID-->
+<!--    live2d_settings['modelStorage'] = false;         // 不储存模型 ID-->
+<!--    live2d_settings['canCloseLive2d'] = false;       // 隐藏 关闭看板娘 按钮-->
+<!--    live2d_settings['canTurnToHomePage'] = false;    // 隐藏 返回首页 按钮-->
+<!--    live2d_settings['waifuSize'] = '200x178';        // 看板娘大小-->
+<!--    live2d_settings['waifuTipsSize'] = '190x50';    // 提示框大小-->
+<!--    live2d_settings['waifuFontSize'] = '15px';       // 提示框字体-->
+<!--    live2d_settings['waifuToolFont'] = '13px';       // 工具栏字体-->
+<!--    live2d_settings['waifuToolLine'] = '20px';       // 工具栏行高-->
+<!--    live2d_settings['waifuToolTop'] = '-30px';       // 工具栏顶部边距-->
+<!--    live2d_settings['waifuDraggable'] = 'axis-x';    // 拖拽样式-->
+<!--    /* 在 initModel 前添加 */-->
+<!--    initModel("waifu/waifu-tips.json?v=1.4.2");-->
+<!--    // $(".fui-user").click()-->
+<!--    -->
+<!--  </script>-->
 
 </body>
 </html>
