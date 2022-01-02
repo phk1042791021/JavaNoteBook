@@ -3544,6 +3544,7 @@
         var e = new XMLHttpRequest;
         // Cache 相同的请求，减少请求数量
         if (requestCache[t] !== undefined) {
+            console.log("111")
             i(requestCache[t]);
             return;
         }
