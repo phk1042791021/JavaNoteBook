@@ -138,12 +138,15 @@ body {
     border-bottom: 0 !important;
     padding-bottom: 0 !important;
     margin-bottom: 5px !important;
+    margin-top: 5px !important;
 }
 .search input{
     margin-right: 10px;
     margin-left: 10px;
-    margin-button: -10px !important;
-    border-radius: 12px ;
+    margin-button: -8px !important;
+    border-radius: 13px ;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
 }
 p strong{
     color: var(--theme-color) !important;
