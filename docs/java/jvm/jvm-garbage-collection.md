@@ -1,9 +1,3 @@
----
-category: Java
-tag:
-  - JVM
----
-
 # JVM 垃圾回收详解
 
 ## 写在前面
@@ -24,7 +18,7 @@ tag:
 
 ### 本文导火索
 
-![](./pictures/jvm垃圾回收/29176325.png)
+![](pictures/jvm垃圾回收/29176325.png ':size=70%')
 
 当需要排查各种内存溢出问题、当垃圾收集成为系统达到更高并发的瓶颈时，我们就需要对这些“自动化”的技术实施必要的监控和调节。
 
@@ -36,7 +30,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 **堆空间的基本结构：**
 
-![](./pictures/jvm垃圾回收/01d330d8-2710-4fad-a91c-7bbbfaaefc0e.png)
+![](pictures/jvm垃圾回收/01d330d8-2710-4fad-a91c-7bbbfaaefc0e.png ':size=85%')
 
 上图所示的 Eden 区、From Survivor0("From") 区、To Survivor1("To") 区都属于新生代，Old Memory 区属于老年代。
 
@@ -155,7 +149,7 @@ Heap
 
 ```
 
-![堆内存常见分配策略 ](./pictures/jvm垃圾回收/堆内存.png)
+![堆内存常见分配策略 ](pictures/jvm垃圾回收/堆内存.png)
 
 ### 1.1 对象优先在 eden 区分配
 
@@ -177,14 +171,14 @@ public class GCTest {
 ```
 
 通过以下方式运行：
-![](./pictures/jvm垃圾回收/25178350.png)
+![](pictures/jvm垃圾回收/25178350.png)
 
 添加的参数：`-XX:+PrintGCDetails`
-![](./pictures/jvm垃圾回收/10317146.png)
+![](pictures/jvm垃圾回收/10317146.png)
 
 运行结果 (红色字体描述有误，应该是对应于 JDK1.7 的永久代)：
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28954286.jpg)
+![](pictures/28954286.jpg)
 
 从上图我们可以看出 eden 区内存几乎已经被分配完全（即使程序什么也不做，新生代也会使用 2000 多 k 内存）。假如我们再为 allocation2 分配内存会出现什么情况呢？
 
@@ -192,7 +186,7 @@ public class GCTest {
 allocation2 = new byte[900*1024];
 ```
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-8-26/28128785.jpg)
+![](pictures/28128785.jpg)
 
 **简单解释一下为什么会出现这种情况：** 因为给 allocation2 分配内存的时候 eden 区内存几乎已经被分配完了，我们刚刚讲了当 Eden 区没有足够空间进行分配时，虚拟机将发起一次 Minor GC.GC 期间虚拟机又发现 allocation1 无法存入 Survivor 空间，所以只好通过 **分配担保机制** 把新生代的对象提前转移到老年代中去，老年代上的空间足够存放 allocation1，所以不会出现 Full GC。执行 Minor GC 后，后面分配的对象如果能够存在 eden 区的话，还是会在 eden 区分配内存。可以执行如下代码验证：
 
@@ -233,7 +227,7 @@ public class GCTest {
 >
 > jdk8 官方文档引用 ：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html 。
 >
-> ![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210523201742303.png)
+> ![](pictures/image-20210523201742303.png)
 >
 > **动态年龄计算的代码如下：**
 >
@@ -270,7 +264,7 @@ public class GCTest {
 
 上面的说法已经在《深入理解 Java 虚拟机》第三版中被改正过来了。感谢 R 大的回答：
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2020-8/b48228c2-ac00-4668-a78f-6f221f8563b5.png)
+![](pictures/b48228c2-ac00-4668-a78f-6f221f8563b5.png ':size=75%')
 
 **总结：**
 
@@ -298,7 +292,7 @@ public class GCTest {
 
 堆中几乎放着所有的对象实例，对堆垃圾回收前的第一步就是要判断哪些对象已经死亡（即不能再被任何途径使用的对象）。
 
-![](./pictures/jvm垃圾回收/11034259.png)
+![](pictures/jvm垃圾回收/11034259.png ':size=56%')
 
 ### 2.1 引用计数法
 
@@ -325,7 +319,7 @@ public class ReferenceCountingGc {
 
 这个算法的基本思想就是通过一系列的称为 **“GC Roots”** 的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到 GC Roots 没有任何引用链相连的话，则证明此对象是不可用的。
 
-![可达性分析算法 ](./pictures/jvm垃圾回收/72762049.png)
+![可达性分析算法 ](pictures/jvm垃圾回收/72762049.png)
 
 可作为 GC Roots 的对象包括下面几种:
 
@@ -410,7 +404,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 3 垃圾收集算法
 
-![垃圾收集算法分类](./pictures/jvm垃圾回收/垃圾收集算法.png)
+![垃圾收集算法分类](pictures/jvm垃圾回收/垃圾收集算法.png)
 
 ### 3.1 标记-清除算法
 
@@ -419,19 +413,19 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 1. **效率问题**
 2. **空间问题（标记清除后会产生大量不连续的碎片）**
 
-![](./pictures/jvm垃圾回收/标记-清除算法.jpeg)
+![](pictures/jvm垃圾回收/标记-清除算法.jpeg ':size=50%')
 
 ### 3.2 标记-复制算法
 
 为了解决效率问题，“标记-复制”收集算法出现了。它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。
 
-![复制算法](./pictures/jvm垃圾回收/90984624.png)
+![复制算法](pictures/jvm垃圾回收/90984624.png ':size=50%')
 
 ### 3.3 标记-整理算法
 
 根据老年代的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。
 
-![标记-整理算法 ](./pictures/jvm垃圾回收/94057049.png)
+![标记-整理算法 ](pictures/jvm垃圾回收/94057049.png)
 
 ### 3.4 分代收集算法
 
@@ -445,7 +439,7 @@ JDK1.2 以后，Java 对引用的概念进行了扩充，将引用分为强引�
 
 ## 4 垃圾收集器
 
-![垃圾收集器分类](./pictures/jvm垃圾回收/垃圾收集器.png)
+![垃圾收集器分类](pictures/jvm垃圾回收/垃圾收集器.png)
 
 **如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。**
 
@@ -457,7 +451,7 @@ Serial（串行）收集器是最基本、历史最悠久的垃圾收集器了�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![ Serial 收集器 ](./pictures/jvm垃圾回收/46873026.png)
+![ Serial 收集器 ](pictures/jvm垃圾回收/46873026.png)
 
 虚拟机的设计者们当然知道 Stop The World 带来的不良用户体验，所以在后续的垃圾收集器设计中停顿时间在不断缩短（仍然还有停顿，寻找最优秀的垃圾收集器的过程仍然在继续）。
 
@@ -469,7 +463,7 @@ Serial（串行）收集器是最基本、历史最悠久的垃圾收集器了�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![ParNew 收集器 ](./pictures/jvm垃圾回收/22018368.png)
+![ParNew 收集器 ](pictures/jvm垃圾回收/22018368.png)
 
 它是许多运行在 Server 模式下的虚拟机的首要选择，除了 Serial 收集器外，只有它能与 CMS 收集器（真正意义上的并发收集器，后面会介绍到）配合工作。
 
@@ -498,7 +492,7 @@ Parallel Scavenge 收集器也是使用标记-复制算法的多线程收集器�
 
 **新生代采用标记-复制算法，老年代采用标记-整理算法。**
 
-![Parallel Scavenge 收集器 ](./pictures/jvm垃圾回收/parllel-scavenge收集器.png)
+![Parallel Scavenge 收集器 ](pictures/jvm垃圾回收/parllel-scavenge收集器.png)
 
 **这是 JDK1.8 默认收集器**
 
@@ -534,7 +528,7 @@ JDK1.8 默认使用的是 Parallel Scavenge + Parallel Old，如果指定了-XX:
 - **重新标记：** 重新标记阶段就是为了修正并发标记期间因为用户程序继续运行而导致标记产生变动的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段的时间稍长，远远比并发标记阶段时间短
 - **并发清除：** 开启用户线程，同时 GC 线程开始对未标记的区域做清扫。
 
-![CMS 垃圾收集器 ](./pictures/jvm垃圾回收/CMS收集器.png)
+![CMS 垃圾收集器 ](pictures/jvm垃圾回收/CMS收集器.png)
 
 从它的名字就可以看出它是一款优秀的垃圾收集器，主要优点：**并发收集、低停顿**。但是它有下面三个明显的缺点：
 

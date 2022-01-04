@@ -3544,14 +3544,14 @@
         var e = new XMLHttpRequest;
         // Cache 相同的请求，减少请求数量
         if (requestCache[t] !== undefined) {
-            console.log("111")
+            // console.log(t)
             i(requestCache[t]);
             return;
         }
         e.open("GET", t, !0), e.responseType = "arraybuffer", e.onload = function () {
             switch (e.status) {
                 case 200:
-                    console.log(2222)
+                    // console.log(2222)
                     requestCache[t] = e.response;
                     i(e.response);
                     break;

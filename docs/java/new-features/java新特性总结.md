@@ -22,7 +22,7 @@ Java 平台模块系统是[Jigsaw Project](https://openjdk.java.net/projects/jig
 
 任意一个 jar 文件，只要加上一个 模块描述文件（module-info.java），就可以升级为一个模块。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/module-structure.png)
+![](images/module-structure.png)
 
 在引入了模块系统之后，JDK 被重新组织成 94 个模块。Java 应用可以通过新增的 jlink 工具，创建出只包含所依赖的 JDK 模块的自定义运行时镜像。这样可以极大的减少 Java 运行时环境的大小。
 
@@ -53,7 +53,7 @@ jshell 是 Java 9 新增的一个实用工具。为 Java 提供了类似于 Pyth
 
 在 Jshell 中可以直接输入表达式并查看其执行结果。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816083417616.png)
+![](images/image-20210816083417616.png)
 
 ### 集合增强
 
@@ -163,7 +163,7 @@ System.out.println(ProcessHandle.current().pid());
 System.out.println(ProcessHandle.current().info());
 ```
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816104614414.png)
+![](images/image-20210816104614414.png)
 
 ### 平台日志 API 和服务
 
@@ -262,7 +262,7 @@ static <E> List<E> copyOf(Collection<? extends E> coll) {
 
 使用 `copyOf()` 创建的集合为不可变集合，不能进行添加、删除、替换、 排序等操作，不然会报 `java.lang.UnsupportedOperationException` 异常。 IDEA 也会有相应的提示。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210816154125579.png)
+![](images/image-20210816154125579.png)
 
 `java.util.stream.Collectors` 中新增了静态方法，用于将流中的元素收集为不可变的集合。
 
@@ -304,7 +304,7 @@ Java 10 在现有的 CDS 功能基础上再次拓展，以允许应用类放置�
 
 Java11 于 2018 年 9 月 25 日正式发布，这是很重要的一个版本！Java 11 和 2017 年 9 月份发布的 Java 9 以及 2018 年 3 月份发布的 Java 10 相比，其最大的区别就是：在长期支持(Long-Term-Support)方面，**Oracle 表示会对 Java 11 提供大力支持，这一支持将会持续至 2026 年 9 月。这是据 Java 8 以后支持的首个长期版本。**
 
-![](https://img-blog.csdnimg.cn/20210603202746605.png)
+![](images/20210603202746605.png)
 
 ### String
 
@@ -890,7 +890,7 @@ public non-sealed class Manager extends Person {
 }
 ```
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/javaguide/image-20210820153955587.png)
+![](images/image-20210820153955587.png)
 
 如果允许扩展的子类和封闭类在同一个源代码文件里，封闭类可以不使用 permits 语句，Java 编译器将检索源文件，在编译期为封闭类添加上许可的子类。
 

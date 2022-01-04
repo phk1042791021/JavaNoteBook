@@ -48,7 +48,7 @@ public class Main {
 }
 ```
 
- formula 是作为匿名对象实现的。该代码非常容易理解，6行代码实现了计算 `sqrt(a * 100)`。在下一节中，我们将会看到在 Java 8 中实现单个方法对象有一种更好更方便的方法。
+formula 是作为匿名对象实现的。该代码非常容易理解，6行代码实现了计算 `sqrt(a * 100)`。在下一节中，我们将会看到在 Java 8 中实现单个方法对象有一种更好更方便的方法。
 
 **译者注：** 不管是抽象类还是接口，都可以通过匿名内部类的方式访问。不能通过抽象类或者接口直接创建对象。对于上面通过匿名内部类方式访问接口，我们可以这样理解：一个内部类实现了接口里的抽象方法并且返回一个内部类对象，之后我们让接口的引用来指向这个对象。
 
@@ -97,7 +97,7 @@ List 类本身就有一个 `sort` 方法。并且Java编译器可以自动推导
 
 Java 语言设计者们投入了大量精力来思考如何使现有的函数友好地支持Lambda。最终采取的方法是：增加函数式接口的概念。**“函数式接口”是指仅仅只包含一个抽象方法,但是可以有多个非抽象方法(也就是上面提到的默认方法)的接口。** 像这样的接口，可以被隐式转换为lambda表达式。`java.lang.Runnable` 与 `java.util.concurrent.Callable` 是函数式接口最典型的两个例子。Java 8增加了一种特殊的注解`@FunctionalInterface`,但是这个注解通常不是必须的(某些情况建议使用)，只要接口只包含一个抽象方法，虚拟机会自动判断该接口为函数式接口。一般建议在接口上使用`@FunctionalInterface` 注解进行声明，这样的话，编译器如果发现你标注了这个注解的接口有多于一个抽象方法的时候会报错的，如下图所示
 
-![@FunctionalInterface 注解](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/@FunctionalInterface.png)
+![@FunctionalInterface 注解](images/@FunctionalInterface.png)
 
 示例：
 
@@ -543,7 +543,7 @@ concat = Stream.of("a", "B", "c", "D", "e", "F").
  reduce("", String::concat);
 ```
 
-上面代码例如第一个示例的 reduce()，第一个参数（空白字符）即为起始值，第二个参数（String::concat）为 BinaryOperator。这类有起始值的 reduce() 都返回具体的对象。而对于第四个示例没有起始值的 reduce()，由于可能没有足够的元素，返回的是 Optional，请留意这个区别。更多内容查看： [IBM：Java 8 中的 Streams API 详解](https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/index.html) 
+上面代码例如第一个示例的 reduce()，第一个参数（空白字符）即为起始值，第二个参数（String::concat）为 BinaryOperator。这类有起始值的 reduce() 都返回具体的对象。而对于第四个示例没有起始值的 reduce()，由于可能没有足够的元素，返回的是 Optional，请留意这个区别。更多内容查看： [IBM：Java 8 中的 Streams API 详解](https://www.ibm.com/developerworks/cn/java/j-lo-java8streamapi/index.html)
 
 ## Parallel Streams(并行流)
 
@@ -678,7 +678,7 @@ Java 8在 `java.time` 包下包含一个全新的日期和时间API。新的Date
 
 - jdk1.8中新增了 LocalDate 与 LocalDateTime等类来解决日期处理方法，同时引入了一个新的类DateTimeFormatter 来解决日期格式化问题。可以使用Instant代替 Date，LocalDateTime代替 Calendar，DateTimeFormatter 代替 SimpleDateFormat。
 
-  
+
 
 ### Clock
 
@@ -803,7 +803,7 @@ System.out.println(formatterOfYyyy.format(rightNow));
 
 从下图可以更清晰的看到具体的错误，并且 IDEA 已经智能地提示更倾向于使用  `yyyy` 而不是  `YYYY` 。
 
-![](https://img-blog.csdnimg.cn/2021042717491413.png)
+![](images/2021042717491413.png)
 
 ### LocalDateTime(本地日期时间)
 

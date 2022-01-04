@@ -148,17 +148,42 @@ body {
     padding-left: 15px !important;
     padding-right: 15px !important;
 }
-p strong{
+article strong{
     color: var(--theme-color) !important;
 }
+table strong{
+    color: #505d6b !important;
+}
+/*h1 a span{*/
+/*    color: var(--theme-color) !important;*/
+/*}*/
+article h2 a{
+    background-color: var(--theme-color) !important;
+    padding: 2px 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
 h2 a span{
-    color: var(--theme-color) !important;
+    color: #ffffff !important;
 }
 h3 a span{
     color: var(--theme-color) !important;
 }
 h4 a span{
     color: var(--theme-color) !important;
+}
+
+.anchor:hover{
+    text-decoration: none !important;
+}
+
+article h2{
+    border-bottom: 2px solid var(--theme-color);
+}
+
+.markdown-section blockquote{
+    background-color: #fff8f4;
+    padding: 1px 20px;
 }
 
 

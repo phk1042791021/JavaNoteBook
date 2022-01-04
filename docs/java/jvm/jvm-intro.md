@@ -1,9 +1,3 @@
----
-category: Java
-tag:
-  - JVM
----
-
 # 大白话带你认识JVM
 
 > 来自掘金用户：[说出你的愿望吧丷](https://juejin.im/user/5c2400afe51d45451758aa96)投稿，原文地址：https://juejin.im/post/5e1505d0f265da5d5d744050#heading-28
@@ -18,7 +12,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 好，其实抛开这么专业的句子不说，就知道JVM其实就类似于一台小电脑运行在windows或者linux这些操作系统环境下即可。它直接和操作系统进行交互，与硬件不直接交互，而操作系统可以帮我们完成和硬件进行交互的工作。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/d947f91e44c44c6c80222b49c2dee859-new-image19a36451-d673-486e-9c8e-3c7d8ab66929.png)
+![](pictures/d947f91e44c44c6c80222b49c2dee859-new-image19a36451-d673-486e-9c8e-3c7d8ab66929.png ':size=20%')
 
 ### 1.1 Java文件是如何被运行的
 
@@ -30,7 +24,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 如果 **JVM** 想要执行这个 **.class** 文件，我们需要将其装进一个 **类加载器** 中，它就像一个搬运工一样，会把所有的 **.class** 文件全部搬进JVM里面来。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/81f1813f371c40ffa1c1f6d78bc49ed9-new-image28314ec8-066f-451e-8373-4517917d6bf7.png)
+![](pictures/81f1813f371c40ffa1c1f6d78bc49ed9-new-image28314ec8-066f-451e-8373-4517917d6bf7.png)
 
 #### ② 方法区
 
@@ -52,7 +46,7 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 主要就是完成一个加载工作，类似于一个指针一样的，指向下一行我们需要执行的代码。和栈一样，都是 **线程独享** 的，就是说每一个线程都会有自己对应的一块区域而不会存在并发和多线程的问题。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/897863ee5ecb4d92b9119d065f468262-new-imagef7287f0b-c9f0-4f22-9eb4-6968bbaa5a82.png)
+![](pictures/897863ee5ecb4d92b9119d065f468262-new-imagef7287f0b-c9f0-4f22-9eb4-6968bbaa5a82.png)
 
 #### 小总结
 
@@ -64,11 +58,11 @@ JVM 是 Java Virtual Machine 的缩写，它是一个虚构出来的计算机，
 
 一个简单的学生类
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/29046a721c2548e0a0680ec5baf4ea95-new-imageb0b42e5e-8e25-409e-b7b9-6586a39a0b8d.png)
+![](pictures/29046a721c2548e0a0680ec5baf4ea95-new-imageb0b42e5e-8e25-409e-b7b9-6586a39a0b8d.png ':size=50%')
 
 一个main方法
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/a3d34d33eab74f6f8743ecf62807445c-new-image08506a9e-5101-4f30-b0bc-3abbcb8f1894.png)
+![](pictures/a3d34d33eab74f6f8743ecf62807445c-new-image08506a9e-5101-4f30-b0bc-3abbcb8f1894.png ':size=50%')
 
 执行main方法的步骤如下:
 
@@ -213,13 +207,13 @@ JVM内存会划分为堆内存和非堆内存，堆内存中也会划分为**年
 
 而且当老年区执行了full gc之后仍然无法进行对象保存的操作，就会产生OOM，这时候就是虚拟机中的堆内存不足，原因可能会是堆内存设置的大小过小，这个可以通过参数-Xms、-Xmx来调整。也可能是代码中创建的对象大且多，而且它们一直在被引用从而长时间垃圾收集无法收集它们。
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/c02ecba3c33f43429a765987b928e423-new-image93b46f3d-33f9-46f9-a825-ec7129b004f6.png)
+![](pictures/c02ecba3c33f43429a765987b928e423-new-image93b46f3d-33f9-46f9-a825-ec7129b004f6.png ':size=40%')
 
 补充说明：关于-XX:TargetSurvivorRatio参数的问题。其实也不一定是要满足-XX:MaxTenuringThreshold才移动到老年代。可以举个例子：如对象年龄5的占30%，年龄6的占36%，年龄7的占34%，加入某个年龄段（如例子中的年龄6）后，总占用超过Survivor空间*TargetSurvivorRatio的时候，从该年龄段开始及大于的年龄对象就要进入老年代（即例子中的年龄6对象，就是年龄6和年龄7晋升到老年代），这时候无需等到MaxTenuringThreshold中要求的15
 
 #### 3.3.8 如何判断一个对象需要被干掉
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/1c1d85b5fb8b47239af2a5c0436eb2d7-new-image0cd10827-2f96-433c-9b16-93d4fe491d88.png)
+![](pictures/1c1d85b5fb8b47239af2a5c0436eb2d7-new-image0cd10827-2f96-433c-9b16-93d4fe491d88.png)
 
 图中程序计数器、虚拟机栈、本地方法栈，3个区域随着线程的生存而生存的。内存分配和回收都是确定的。随着线程的结束内存自然就被回收了，因此不需要考虑垃圾回收的问题。而Java堆和方法区则不一样，各线程共享，内存的分配和回收都是动态的。因此垃圾收集器所关注的都是堆和方法这部分内存。
 
@@ -248,7 +242,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 
 补充一句：并不提倡在程序中调用finalize()来进行自救。建议忘掉Java程序中该方法的存在。因为它执行的时间不确定，甚至是否被执行也不确定（Java程序的不正常退出），而且运行代价高昂，无法保证各个对象的调用顺序（甚至有不同线程中调用）。在Java9中已经被标记为 **deprecated** ，且 `java.lang.ref.Cleaner`（也就是强、软、弱、幻象引用的那一套）中已经逐步替换掉它，会比 `finalize` 来的更加的轻量及可靠。
 　　
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/c807dab33f8b42329c1910d609e7ed21-new-image565aeab2-6d3e-4c2c-80f6-7a7b0f629fda.png)
+![](pictures/c807dab33f8b42329c1910d609e7ed21-new-image565aeab2-6d3e-4c2c-80f6-7a7b0f629fda.png ':size=35%')
 
 判断一个对象的死亡至少需要两次标记
 
@@ -269,7 +263,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 
 不足的方面就是标记和清除的效率比较低下。且这种做法会让内存中的碎片非常多。这个导致了如果我们需要使用到较大的内存块时，无法分配到足够的连续内存。比如下图
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/01605d96d85f4daab9bfa5e7000f0d31-new-image78e03b85-fbef-4df9-b41e-2b63d78d119f.png)
+![](pictures/01605d96d85f4daab9bfa5e7000f0d31-new-image78e03b85-fbef-4df9-b41e-2b63d78d119f.png ':size=55%')
 
 此时可使用的内存块都是零零散散的，导致了刚刚提到的大内存对象问题
 
@@ -279,7 +273,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 
 这个算法的代价就是把内存缩水了，这样堆内存的使用效率就会变得十分低下了
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/fc349fbb9b204495a5321febe27818d4-new-image45920a9a-552c-4656-94d6-e3ca45ff9b76.png)
+![](pictures/fc349fbb9b204495a5321febe27818d4-new-image45920a9a-552c-4656-94d6-e3ca45ff9b76.png ':size=55%')
 
 不过它们分配的时候也不是按照1:1这样进行分配的，就类似于Eden和Survivor也不是等价分配是一个道理。
 
@@ -287,7 +281,7 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 
 复制算法在对象存活率高的时候会有一定的效率问题，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/2599e9f722074d34a3f7fd9f0076f121-new-imagec76192ec-b63a-43e3-a6d6-cf01f749953f.png)
+![](pictures/2599e9f722074d34a3f7fd9f0076f121-new-imagec76192ec-b63a-43e3-a6d6-cf01f749953f.png ':size=55%')
 
 #### 3.4.4 分代收集算法
 
@@ -299,7 +293,15 @@ finalize()是Object类的一个方法、一个对象的finalize()方法只会被
 
 HotSpot VM中的垃圾回收器，以及适用场景
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/11e9dcd0f1ee4f25836e6f1c47104c51-new-image69e1c56a-1d40-493a-9901-6efc647a01f3.png)
+| 收集器               | 串行、并行or并发 | 新生代/老年代 | 算法         | 目标     | 适用场景                        |
+|-------------------|-----------|---------|------------|--------|-----------------------------|
+| Serial            | 串行        | 新生代     | 复制算法       | 响应速度优先 | 单CPU环境下的Client模式            |
+| Serial Old        | 串行        | 老年代     | 标记-整理      | 响应速度优先 | 单CPU环境下的Client模式、CMS的后备预案   |
+| ParNew            | 并行        | 新生代     | 复制算法       | 响应速度优先 | 多CPU环境时在Server模式下与CMS配合     |
+| Parallel Scavenge | 并行        | 新生代     | 复制算法       | 吞吐量优先  | 在后台运算而不需要太多交互的任务            |
+| Parallel Old      | 并行        | 老年代     | 标记-整理      | 吞吐量优先  | 在后台运算而不需要太多交互的任务            |
+| CMS               | 并发        | 老年代     | 标记-整理      | 响应速度优先 | 集中在互联网站或8/S系统服务端优先端上的Java应用 |
+| G1                | 并发        | both    | 标记-整理+复制算法 | 响应速度优先 | 面向服务端应用，将来替换CMS             |
 
 到jdk8为止，默认的垃圾收集器是Parallel Scavenge 和 Parallel Old
 
@@ -310,22 +312,22 @@ HotSpot VM中的垃圾回收器，以及适用场景
 
 JVM的参数非常之多，这里只列举比较重要的几个，通过各种各样的搜索引擎也可以得知这些信息。
 
-| 参数名称 | 含义 | 默认值 | 说明 |
-|------|------------|------------|------|
-| -Xms  | 初始堆大小          | 物理内存的1/64(<1GB)         |默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制.
-| -Xmx  | 最大堆大小        | 物理内存的1/4(<1GB)        | 默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制
-| -Xmn  | 年轻代大小(1.4or lator)       |        |注意：此处的大小是（eden+ 2 survivor space).与jmap -heap中显示的New gen是不同的。整个堆大小=年轻代大小 + 老年代大小 + 持久代（永久代）大小.增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8
-| -XX:NewSize  | 设置年轻代大小(for 1.3/1.4)          |          |
-| -XX:MaxNewSize  | 年轻代最大值(for 1.3/1.4)        |         |
-| -XX:PermSize  | 设置持久代(perm gen)初始值     | 物理内存的1/64       |
-| -XX:MaxPermSize  | 设置持久代最大值          | 物理内存的1/4         |
-| -Xss  | 每个线程的堆栈大小        |         | JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.根据应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右一般小的应用， 如果栈不是很深， 应该是128k够用的 大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。（校长）和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话:-Xss is translated in a VM flag named ThreadStackSize”一般设置这个值就可以了
-| -XX:NewRatio  | 年轻代(包括Eden和两个Survivor区)与年老代的比值(除去持久代)       |        |-XX:NewRatio=4表示年轻代与年老代所占比值为1:4,年轻代占整个堆栈的1/5Xms=Xmx并且设置了Xmn的情况下，该参数不需要进行设置。
-| -XX:SurvivorRatio  | Eden区与Survivor区的大小比值          |          |设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10
-| -XX:+DisableExplicitGC  | 关闭System.gc()        |         |这个参数需要严格的测试
-| -XX:PretenureSizeThreshold  | 对象超过多大是直接在旧生代分配       | 0      |单位字节 新生代采用Parallel ScavengeGC时无效另一种直接在旧生代分配的情况是大的数组对象,且数组中无外部引用对象.
-| -XX:ParallelGCThreads  | 并行收集器的线程数         |          |此值最好配置与处理器数目相等 同样适用于CMS
-| -XX:MaxGCPauseMillis  | 每次年轻代垃圾回收的最长时间(最大暂停时间)        |         |如果无法满足此时间,JVM会自动调整年轻代大小,以满足此值.
+| 参数名称                       | 含义                                    | 默认值             | 说明                                                                                                                                                                                                                                                                                                           |
+|----------------------------|---------------------------------------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -Xms                       | 初始堆大小                                 | 物理内存的1/64(<1GB) | 默认(MinHeapFreeRatio参数可以调整)空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制.                                                                                                                                                                                                                                                   |
+| -Xmx                       | 最大堆大小                                 | 物理内存的1/4(<1GB)  | 默认(MaxHeapFreeRatio参数可以调整)空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制                                                                                                                                                                                                                                                    |
+| -Xmn                       | 年轻代大小(1.4or lator)                    |                 | 注意：此处的大小是（eden+ 2 survivor space).与jmap -heap中显示的New gen是不同的。整个堆大小=年轻代大小 + 老年代大小 + 持久代（永久代）大小.增大年轻代后,将会减小年老代大小.此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8                                                                                                                                                                 |
+| -XX:NewSize                | 设置年轻代大小(for 1.3/1.4)                  |                 |                                                                                                                                                                                                                                                                                                              |
+| -XX:MaxNewSize             | 年轻代最大值(for 1.3/1.4)                   |                 |                                                                                                                                                                                                                                                                                                              |
+| -XX:PermSize               | 设置持久代(perm gen)初始值                    | 物理内存的1/64       |                                                                                                                                                                                                                                                                                                              |
+| -XX:MaxPermSize            | 设置持久代最大值                              | 物理内存的1/4        |                                                                                                                                                                                                                                                                                                              |
+| -Xss                       | 每个线程的堆栈大小                             |                 | JDK5.0以后每个线程堆栈大小为1M,以前每个线程堆栈大小为256K.根据应用的线程所需内存大小进行 调整.在相同物理内存下,减小这个值能生成更多的线程.但是操作系统对一个进程内的线程数还是有限制的,不能无限生成,经验值在3000~5000左右一般小的应用， 如果栈不是很深， 应该是128k够用的 大的应用建议使用256k。这个选项对性能影响比较大，需要严格的测试。（校长）和threadstacksize选项解释很类似,官方文档似乎没有解释,在论坛中有这样一句话:-Xss is translated in a VM flag named ThreadStackSize”一般设置这个值就可以了 |
+| -XX:NewRatio               | 年轻代(包括Eden和两个Survivor区)与年老代的比值(除去持久代) |                 | -XX:NewRatio=4表示年轻代与年老代所占比值为1:4,年轻代占整个堆栈的1/5Xms=Xmx并且设置了Xmn的情况下，该参数不需要进行设置。                                                                                                                                                                                                                                  |
+| -XX:SurvivorRatio          | Eden区与Survivor区的大小比值                  |                 | 设置为8,则两个Survivor区与一个Eden区的比值为2:8,一个Survivor区占整个年轻代的1/10                                                                                                                                                                                                                                                      |
+| -XX:+DisableExplicitGC     | 关闭System.gc()                         |                 | 这个参数需要严格的测试                                                                                                                                                                                                                                                                                                  |
+| -XX:PretenureSizeThreshold | 对象超过多大是直接在旧生代分配                       | 0               | 单位字节 新生代采用Parallel ScavengeGC时无效另一种直接在旧生代分配的情况是大的数组对象,且数组中无外部引用对象.                                                                                                                                                                                                                                           |
+| -XX:ParallelGCThreads      | 并行收集器的线程数                             |                 | 此值最好配置与处理器数目相等 同样适用于CMS                                                                                                                                                                                                                                                                                      |
+| -XX:MaxGCPauseMillis       | 每次年轻代垃圾回收的最长时间(最大暂停时间)                |                 | 如果无法满足此时间,JVM会自动调整年轻代大小,以满足此值.                                                                                                                                                                                                                                                                               |
 
 其实还有一些打印及CMS方面的参数，这里就不以一一列举了
 
@@ -353,17 +355,17 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 
 注意：此处设置的是Java堆大小，也就是新生代大小 + 老年代大小
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/5e7b352c16d74c789c665af46d3a2509-new-imagedd645dae-307d-4572-b6e2-b5a9925a46cd.png)
+![](pictures/5e7b352c16d74c789c665af46d3a2509-new-imagedd645dae-307d-4572-b6e2-b5a9925a46cd.png)
 
 设置一个VM options的参数
 
     -Xmx20m -Xms5m -XX:+PrintGCDetails
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/fe99e355f4754fa4be7427cb65261f3d-new-imagebb5cf485-99f8-43eb-8809-2a89e6a1768e.png)
+![](pictures/fe99e355f4754fa4be7427cb65261f3d-new-imagebb5cf485-99f8-43eb-8809-2a89e6a1768e.png)
 
 再次启动main方法
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/300539f6560043dd8a3fe085d28420e6-new-image3c581a2e-196f-4b01-90f1-c27731b4610b.png)
+![](pictures/300539f6560043dd8a3fe085d28420e6-new-image3c581a2e-196f-4b01-90f1-c27731b4610b.png)
 
 这里GC弹出了一个Allocation Failure分配失败，这个事情发生在PSYoungGen，也就是年轻代中
 
@@ -380,7 +382,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
 ```
 
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/bdd717d0a3394be7a733760052773374-new-image371b5d59-0020-4091-9874-603c0ab0073d.png)
+![](pictures/bdd717d0a3394be7a733760052773374-new-image371b5d59-0020-4091-9874-603c0ab0073d.png)
 
 此时free memory就又缩水了，不过total memory是没有变化的。Java会尽可能将total mem的值维持在最小堆内存大小
 
@@ -391,7 +393,7 @@ System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 
     System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 1024 + "M");  //系统的空闲空间
     System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/0fd7550ae2144adca8ed2ede12d5fb96-new-image0c31ff20-289d-4088-8c67-a846d0c5d1e0.png)
+![](pictures/0fd7550ae2144adca8ed2ede12d5fb96-new-image0c31ff20-289d-4088-8c67-a846d0c5d1e0.png)
 
 这时候我们创建了一个10M的字节数据，这时候最小堆内存是顶不住的。我们会发现现在的total memory已经变成了15M，这就是已经申请了一次内存的结果。
 
@@ -404,7 +406,7 @@ System.out.println("free mem=" + Runtime.getRuntime().freeMemory() / 1024.0 / 10
 System.out.println("total mem=" + Runtime.getRuntime().totalMemory() / 1024.0 / 1024 + "M");  //当前可用的总空间
 ```
 
-![](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-11/4cc44b5d5d1c40c48640ece6a296b1ac-new-image4b57baf6-085b-4150-9c60-ac51b0f815d7.png)
+![](pictures/4cc44b5d5d1c40c48640ece6a296b1ac-new-image4b57baf6-085b-4150-9c60-ac51b0f815d7.png)
     
 此时我们手动执行了一次fullgc，此时total memory的内存空间又变回5.5M了，此时又是把申请的内存释放掉的结果。
 

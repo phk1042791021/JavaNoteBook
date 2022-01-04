@@ -1,9 +1,3 @@
----
-category: Java
-tag:
-  - JVM
----
-
 # 类文件结构详解
 
 ## 一 概述
@@ -12,7 +6,7 @@ tag:
 
 Clojure（Lisp 语言的一种方言）、Groovy、Scala 等语言都是运行在 Java 虚拟机之上。下图展示了不同的语言被不同的编译器编译成`.class`文件最终运行在 Java 虚拟机之上。`.class`文件的二进制格式可以使用 [WinHex](https://www.x-ways.net/winhex/) 查看。
 
-![java虚拟机](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/bg/desktop类文件结构概览.png)
+![java虚拟机](pictures/desktop类文件结构概览.png ':size=60%')
 
 可以说`.class`文件是不同的语言在 Java 虚拟机之间的重要桥梁，同时也是支持 Java 跨平台很重要的一个原因。
 
@@ -45,11 +39,11 @@ ClassFile {
 
 通过分析 `ClassFile` 的内容，我们便可以知道 class 文件的组成。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/16d5ec47609818fc.jpeg)
+![](pictures/16d5ec47609818fc.jpg ':size=55%')
 
 下面这张图是通过 IDEA 插件 `jclasslib` 查看的，你可以更直观看到 Class 文件结构。
 
-![](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/java-guide-blog/image-20210401170711475.png)
+![](pictures/image-20210401170711475.png ':size=70%')
 
 使用 `jclasslib` 不光可以直观地查看某个类对应的字节码文件，还可以查看类的基本信息、常量池、接口、属性、函数等信息。
 
@@ -120,7 +114,7 @@ ClassFile {
 
 类访问和属性修饰符:
 
-![类访问和属性修饰符](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/访问标志.png)
+![类访问和属性修饰符](pictures/访问标志.png)
 
 我们定义了一个 Employee 类
 
@@ -133,7 +127,7 @@ public class Employee {
 
 通过`javap -v class类名` 指令来看一下类的访问标志。
 
-![查看类的访问标志](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/查看类的访问标志.png)
+![查看类的访问标志](pictures/查看类的访问标志.png)
 
 ### 2.5 当前类（This Class）、父类（Super Class）、接口（Interfaces）索引集合
 
@@ -159,7 +153,7 @@ public class Employee {
 
 **field info(字段表) 的结构:**
 
-![字段表的结构 ](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/字段表的结构.png)
+![字段表的结构 ](pictures/字段表的结构.png ':size=45%')
 
 - **access_flags:** 字段的作用域（`public` ,`private`,`protected`修饰符），是实例变量还是类变量（`static`修饰符）,可否被序列化（transient 修饰符）,可变性（final）,可见性（volatile 修饰符，是否强制从主内存读写）。
 - **name_index:** 对常量池的引用，表示的字段的名称；
@@ -171,7 +165,7 @@ public class Employee {
 
 **字段的 access_flag 的取值:**
 
-![字段的 access_flag 的取值](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084342859.png)
+![字段的 access_flag 的取值](pictures/image-20201031084342859.png ':size=70%')
 
 ### 2.7 方法表集合（Methods）
 
@@ -186,11 +180,11 @@ Class 文件存储格式中对方法的描述与对字段的描述几乎采用�
 
 **method_info(方法表的) 结构:**
 
-![方法表的结构](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-6/方法表的结构.png)
+![方法表的结构](pictures/方法表的结构.png ':size=45%')
 
 **方法表的 access_flag 取值：**
 
-![方法表的 access_flag 取值](https://guide-blog-images.oss-cn-shenzhen.aliyuncs.com/JVM/image-20201031084248965.png)
+![方法表的 access_flag 取值](pictures/image-20201031084248965.png ':size=70%')
 
 注意：因为`volatile`修饰符和`transient`修饰符不可以修饰方法，所以方法表的访问标志中没有这两个对应的标志，但是增加了`synchronized`、`native`、`abstract`等关键字修饰方法，所以也就多了这些关键字对应的标志。
 
