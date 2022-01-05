@@ -49,7 +49,7 @@
       plugins: [
         function(hook) {
           hook.doneEach(function() {
-            $("pre").addClass("mac").css("white-space", "pre-wrap");
+            // $("pre").addClass("mac").css("white-space", "pre-wrap");
             // $("p>img").parent().css("text-align", "center");
             $(".imgCenter").parent().css("text-align", "center")
             $("pre>code").before('<div class="pre-mac"><span></span><span></span><span></span></div>');
@@ -108,6 +108,8 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-java.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-sql.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-c.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-yaml.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>

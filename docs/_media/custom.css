@@ -77,9 +77,10 @@ section.cover .cover-main > p:last-child a .iconfont {
     z-index: 99;
 }
 
-.mac {
+pre {
     border-radius: 8px;
     background-color: #393939 !important;
+    white-space: pre-wrap;
 
 }
 
@@ -184,6 +185,9 @@ article h2{
 .markdown-section blockquote{
     background-color: #fff8f4;
     padding: 1px 20px;
+}
+.markdown-section{
+    max-width: 65%;
 }
 
 
