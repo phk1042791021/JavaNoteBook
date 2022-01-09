@@ -1,3 +1,40 @@
+- 基础
+  - [**Java基础知识总结**](java/basis/java基础知识总结.md)
+  - [**Java基础知识补充**](java/basis/why-there-only-value-passing-in-java.md)
+  - [**final, static, this, super 关键字总结**](java/basis/java-keyword-summary.md)
+  - [**IO模型详解**](java/basis/io模型详解.md)
+  - [**代理模式详解**](java/basis/代理模式详解.md)
+  - [**反射机制详解**](java/basis/反射机制详解.md)
+  - [**BigDecimal解决浮点数运算精度丢失问题**](java/basis/bigdecimal.md)
+- 集合
+  - [**java集合框架基础知识&面试题总结**](java/collection/java集合框架基础知识&面试题总结.md)
+  - [**java集合使用注意事项**](java/collection/java集合使用注意事项.md)
+  - [**ArrayList源码分析**](java/collection/arraylist-source-code.md)
+  - [**HashMap源码解析**](java/collection/hashmap-source-code.md)
+  - [**ConcurrentHashMap源码解析**](java/collection/concurrent-hash-map-source-code.md)
+- 并发编程
+  - [**AQS原理以及AQS同步组件总结**](java/concurrent/aqs原理以及aqs同步组件总结.md)
+  - [**Atomic原子类总结**](java/concurrent/atomic原子类总结.md)
+  - [**CompletableFuture介绍**](java/concurrent/completablefuture-intro.md)
+  - [**ReentrantLock.md**](java/concurrent/reentrantlock.md)
+  - [**ThreadLocal**](java/concurrent/threadlocal.md)
+  - [**并发容器总结**](java/concurrent/并发容器总结.md)
+  - [**Java线程池学习总结**](java/concurrent/java线程池学习总结.md)
+  - [**拿来即用的Java线程池最佳实践**](java/concurrent/拿来即用的java线程池最佳实践.md)
+  - [**Java并发基础常见面试题总结**](java/concurrent/java并发基础常见面试题总结.md)
+  - [**Java并发进阶常见面试题总结**](java/concurrent/java并发进阶常见面试题总结.md)
+- JVM
+  - [**类文件结构详解**](java/jvm/class-file-structure.md)
+  - [**类加载过程详解**](java/jvm/class-loading-process.md)
+  - [**类加载器详解**](java/jvm/classloader.md)
+  - [**大白话带你认识JVM**](java/jvm/jvm-intro.md)
+  - [**内存模型和垃圾回收**](java/jvm/memory-garbage-collection.md)
+  - [**最重要的JVM参数总结**](java/jvm/jvm-parameters-intro.md)
+  - [**JVM垃圾回收详解**](java/jvm/jvm-garbage-collection.md)
+  - [**Java内存区域详解**](java/jvm/memory-area.md)
+  - [**JDK 监控和故障处理工具总结**](java/jvm/jdk-monitoring-and-troubleshooting-tools.md)
+- 新特性
+  - [**Java8新特性总结**](java/new-features/java新特性总结.md)
 - 数据库基础
   - [**数据库知识点总结**](database/ab/base/总结.md)
   - [**主从复制**](database/ab/base/主从复制.md)
@@ -40,3 +77,31 @@
   - [**Redis面试1**](database/redis/redis基础.md)
   - [**Redis面试2**](database/redis/redis基础2.md)
   - [**Redis面试大全**](database/redis/Redis面试.md)
+- 消息队列
+  - [**RocketMQ**](highPerformance/RocketMQ.md)
+  - [**浅入浅出Kafka**](highPerformance/浅入浅出Kafka.md)
+  - [**为何Kafka这么快**](highPerformance/为何Kafka这么%22快%22.md)
+  - [**消息队列之推还是拉**](highPerformance/消息队列之推还是拉.md)
+- 消息队列面试
+  - [**重复消费、顺序消费、分布式事务**](highPerformance/重复消费、顺序消费、分布式事务.md)
+  - [**面试题**](highPerformance/面试题.md)
+- 并发编程基础知识
+  - [**并发问题的根源**](highPerformance/concurrent/1.并发问题的根源.md)
+  - [**1.2w字+40张图带你参透并发编程**](highPerformance/concurrent/1.2w字+40张图带你参透并发编程.md)
+  - [**可重入锁**](highPerformance/concurrent/1.可重入锁.md)
+- 常见关键字
+  - [**Volatile**](highPerformance/concurrent/2.Volatile.md)
+  - [**死磕Synchronized源码**](highPerformance/concurrent/2.死磕Synchronized源码.md)
+- 多线程锁机制
+  - [**图解Java中那18把锁**](highPerformance/concurrent/3.图解Java中那18把锁.md)
+  - [**锁的应用场景**](highPerformance/concurrent/3.锁的应用场景.md)
+- 常见的JUC工具类
+  - [**AQS**](highPerformance/concurrent/4.AQS.md)
+  - [**30张图带你彻底掌握AQS**](highPerformance/concurrent/4.30图带你彻底掌握AQS.md)
+  - [**35张图让你深入AQS**](highPerformance/concurrent/4.35张图让你深入AQS.md)
+  - [**CountDownLatch,CyclicBarrier,Semaphore**](highPerformance/concurrent/4.CountDownLatch,CyclicBarrier,Semaphore.md)
+  - [**TheadLocal引起的内存泄露故障分析**](highPerformance/concurrent/4.TheadLocal%20引起的内存泄露故障分析.md)
+- 并发编程面试题
+  - [**Java并发进阶常见面试题总结**](highPerformance/concurrent/5.Java并发进阶常见面试题总结.md)
+
+

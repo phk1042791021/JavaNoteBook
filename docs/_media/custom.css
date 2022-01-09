@@ -189,8 +189,25 @@ article h2{
 .markdown-section{
     max-width: 65%;
 }
+.content{
+    font-size: 16px;
+}
 
 
+thead{
+    background-color: #f9d6ba;
+    border-top-color: #f9c397;
+    border-right-color: #f9c397;
+    border-bottom-color: #f9c397;
+    border-left-color: #f9c397;
+}
+.markdown-section td, .markdown-section th{
+    border-color: #f9c397;
+}
 
-
-
+.markdown-section tr:nth-child(2n) {
+    background-color: #fff8f4;
+}
+.markdown-section tr {
+    border-top: 1px solid #f9c397;
+}
