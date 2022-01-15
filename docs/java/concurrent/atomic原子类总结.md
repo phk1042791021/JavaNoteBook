@@ -41,114 +41,123 @@ Atomic 翻译成中文是原子的意思。在化学上，我们知道原子是�
 > **🐛 修正（参见：[issue#626](https://github.com/Snailclimb/JavaGuide/issues/626)）** : `AtomicMarkableReference` 不能解决 ABA 问题。
 
 ```java
-    /**
-
+/**
 AtomicMarkableReference是将一个boolean值作是否有更改的标记，本质就是它的版本号只有两个，true和false，
-
 修改的时候在这两个版本号之间来回切换，这样做并不能解决ABA的问题，只是会降低ABA问题发生的几率而已
 
-@author : mazh
-
-@Date : 2020/1/17 14:41
 */
 
 public class SolveABAByAtomicMarkableReference {
 
-       private static AtomicMarkableReference atomicMarkableReference = new AtomicMarkableReference(100, false);
+  private static AtomicMarkableReference atomicMarkableReference = new AtomicMarkableReference(100, false);
 
-        public static void main(String[] args) {
+  public static void main(String[] args) {
 
-            Thread refT1 = new Thread(() -> {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                atomicMarkableReference.compareAndSet(100, 101, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
-                atomicMarkableReference.compareAndSet(101, 100, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
-            });
+    Thread refT1 = new Thread(() -> {
+      try {
+        TimeUnit.SECONDS.sleep(1);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      atomicMarkableReference.compareAndSet(100, 101, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
+      atomicMarkableReference.compareAndSet(101, 100, atomicMarkableReference.isMarked(), !atomicMarkableReference.isMarked());
+    });
 
-            Thread refT2 = new Thread(() -> {
-                boolean marked = atomicMarkableReference.isMarked();
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                boolean c3 = atomicMarkableReference.compareAndSet(100, 101, marked, !marked);
-                System.out.println(c3); // 返回true,实际应该返回false
-            });
+    Thread refT2 = new Thread(() -> {
+      boolean marked = atomicMarkableReference.isMarked();
+      try {
+        TimeUnit.SECONDS.sleep(2);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      boolean c3 = atomicMarkableReference.compareAndSet(100, 101, marked, !marked);
+      System.out.println(c3); // 返回true,实际应该返回false
+    });
 
-            refT1.start();
-            refT2.start();
-        }
-    }
+    refT1.start();
+    refT2.start();
+  }
+}
 ```
 
 **CAS ABA 问题**
 
 - 描述: 第一个线程取到了变量 x 的值 A，然后巴拉巴拉干别的事，总之就是只拿到了变量 x 的值 A。这段时间内第二个线程也取到了变量 x 的值 A，然后把变量 x 的值改为 B，然后巴拉巴拉干别的事，最后又把变量 x 的值变为 A （相当于还原了）。在这之后第一个线程终于进行了变量 x 的操作，但是此时变量 x 的值还是 A，所以 compareAndSet 操作是成功。
-- 例子描述(可能不太合适，但好理解): 年初，现金为零，然后通过正常劳动赚了三百万，之后正常消费了（比如买房子）三百万。年末，虽然现金零收入（可能变成其他形式了），但是赚了钱是事实，还是得交税的！
+
+- 举例：
+
+  | 小明          | 小红           | 骗子           |
+  | ------------- | -------------- | -------------- |
+  | 读取余额100   |                |                |
+  |               | 读取余额100    |                |
+  |               | 汇款50         |                |
+  |               | cas更新余额150 |                |
+  |               |                | 读取余额150    |
+  |               |                | 取走50         |
+  |               |                | cas更新余额100 |
+  | 取走50        |                |                |
+  | cas更新余额50 | 小红50白给了   |                |
+
 - 代码例子（以`AtomicInteger`为例）
 
 ```java
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AtomicIntegerDefectDemo {
-    public static void main(String[] args) {
-        defectOfABA();
-    }
+  public static void main(String[] args) {
+    defectOfABA();
+  }
 
-    static void defectOfABA() {
-        final AtomicInteger atomicInteger = new AtomicInteger(1);
+  static void defectOfABA() {
+    final AtomicInteger atomicInteger = new AtomicInteger(1);
 
-        Thread coreThread = new Thread(
-                () -> {
-                    final int currentValue = atomicInteger.get();
-                    System.out.println(Thread.currentThread().getName() + " ------ currentValue=" + currentValue);
+    Thread coreThread = new Thread(
+      () -> {
+        final int currentValue = atomicInteger.get();
+        System.out.println(Thread.currentThread().getName() + " currentValue=" + currentValue);
 
-                    // 这段目的：模拟处理其他业务花费的时间
-                    try {
-                        Thread.sleep(300);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    boolean casResult = atomicInteger.compareAndSet(1, 2);
-                    System.out.println(Thread.currentThread().getName()
-                            + " ------ currentValue=" + currentValue
-                            + ", finalValue=" + atomicInteger.get()
-                            + ", compareAndSet Result=" + casResult);
-                }
-        );
-        coreThread.start();
-
-        // 这段目的：为了让 coreThread 线程先跑起来
+        // 这段目的：模拟处理其他业务花费的时间
         try {
-            Thread.sleep(100);
+          Thread.sleep(300);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
 
-        Thread amateurThread = new Thread(
-                () -> {
-                    int currentValue = atomicInteger.get();
-                    boolean casResult = atomicInteger.compareAndSet(1, 2);
-                    System.out.println(Thread.currentThread().getName()
-                            + " ------ currentValue=" + currentValue
-                            + ", finalValue=" + atomicInteger.get()
-                            + ", compareAndSet Result=" + casResult);
+        boolean casResult = atomicInteger.compareAndSet(1, 2);
+        System.out.println(Thread.currentThread().getName()
+                           + " ------ currentValue=" + currentValue
+                           + ", finalValue=" + atomicInteger.get()
+                           + ", compareAndSet Result=" + casResult);
+      }
+    );
+    coreThread.start();
 
-                    currentValue = atomicInteger.get();
-                    casResult = atomicInteger.compareAndSet(2, 1);
-                    System.out.println(Thread.currentThread().getName()
-                            + " ------ currentValue=" + currentValue
-                            + ", finalValue=" + atomicInteger.get()
-                            + ", compareAndSet Result=" + casResult);
-                }
-        );
-        amateurThread.start();
+    // 这段目的：为了让 coreThread 线程先跑起来
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
+
+    Thread amateurThread = new Thread(
+      () -> {
+        int currentValue = atomicInteger.get();
+        boolean casResult = atomicInteger.compareAndSet(1, 2);
+        System.out.println(Thread.currentThread().getName()
+                           + " ------ currentValue=" + currentValue
+                           + ", finalValue=" + atomicInteger.get()
+                           + ", compareAndSet Result=" + casResult);
+
+        currentValue = atomicInteger.get();
+        casResult = atomicInteger.compareAndSet(2, 1);
+        System.out.println(Thread.currentThread().getName()
+                           + " ------ currentValue=" + currentValue
+                           + ", finalValue=" + atomicInteger.get()
+                           + ", compareAndSet Result=" + casResult);
+      }
+    );
+    amateurThread.start();
+  }
 }
 ```
 
@@ -217,15 +226,15 @@ public class AtomicIntegerTest {
 
 ```java
 class Test {
-        private volatile int count = 0;
-        //若要线程安全执行执行count++，需要加锁
-        public synchronized void increment() {
-                  count++;
-        }
+  private volatile int count = 0;
+  //若要线程安全执行执行count++，需要加锁
+  public synchronized void increment() {
+    count++;
+  }
 
-        public int getCount() {
-                  return count;
-        }
+  public int getCount() {
+    return count;
+  }
 }
 ```
 
@@ -233,15 +242,15 @@ class Test {
 
 ```java
 class Test2 {
-        private AtomicInteger count = new AtomicInteger();
+  private AtomicInteger count = new AtomicInteger();
 
-        public void increment() {
-                  count.incrementAndGet();
-        }
-      //使用AtomicInteger之后，不需要加锁，也可以实现线程安全。
-       public int getCount() {
-                return count.get();
-        }
+  public void increment() {
+    count.incrementAndGet();
+  }
+  //使用AtomicInteger之后，不需要加锁，也可以实现线程安全。
+  public int getCount() {
+    return count.get();
+  }
 }
 
 ```
@@ -251,18 +260,18 @@ class Test2 {
 AtomicInteger 类的部分源码：
 
 ```java
-    // setup to use Unsafe.compareAndSwapInt for updates（更新操作时提供“比较并替换”的作用）
-    private static final Unsafe unsafe = Unsafe.getUnsafe();
-    private static final long valueOffset;
+// setup to use Unsafe.compareAndSwapInt for updates（更新操作时提供“比较并替换”的作用）
+private static final Unsafe unsafe = Unsafe.getUnsafe();
+private static final long valueOffset;
 
-    static {
-        try {
-            valueOffset = unsafe.objectFieldOffset
-                (AtomicInteger.class.getDeclaredField("value"));
-        } catch (Exception ex) { throw new Error(ex); }
-    }
+static {
+  try {
+    valueOffset = unsafe.objectFieldOffset
+      (AtomicInteger.class.getDeclaredField("value"));
+  } catch (Exception ex) { throw new Error(ex); }
+}
 
-    private volatile int value;
+private volatile int value;
 ```
 
 AtomicInteger 类主要利用 CAS (compare and swap) + volatile 和 native 方法来保证原子操作，从而避免 synchronized 的高开销，执行效率大为提升。
