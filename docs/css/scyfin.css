@@ -391,3 +391,11 @@
         top: -2px !important;
     }
 }
+/*影片详情页背景*/
+.backgroundContainer.withBackdrop {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+}
+影片列表背景
+.withSectionTabs > .backgroundContainer.withBackdrop {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
