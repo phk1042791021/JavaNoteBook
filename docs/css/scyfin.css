@@ -275,7 +275,7 @@
 /* Fix for groups section card */
 .layout-desktop .content.focuscontainer-x {
     white-space: nowrap !important;
-    padding-right: 48px !important;
+    padding-right: 60px !important;
 }
 
 /* Alternative mobile group section card */
