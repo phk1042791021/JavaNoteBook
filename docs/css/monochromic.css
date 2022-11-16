@@ -8,8 +8,8 @@
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/login/login_minimalistic.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fields/fields_border.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/cornerindicator/indicator_floating.css');
-@import url('https://phk-blog.synology.me:4431/css/dark.css');
-@import url('https://phk-blog.synology.me:4431/css/title_simple.css');
+@import url('https://cdn.jsdelivr.net/gh/phk1042791021/JavaNoteBook/docs/css/dark.css');
+@import url('https://cdn.jsdelivr.net/gh/phk1042791021/JavaNoteBook/docs/css/title_simple.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/bottombarprogress.css');
 @import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/glassy.css');
 :root {--rounding: 12px;}
