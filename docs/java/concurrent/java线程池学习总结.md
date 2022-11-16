@@ -24,7 +24,7 @@
 
 #### 1) 任务(`Runnable` /`Callable`)
 
-执行任务需要实现的 **`Runnable` 接口** 或 **`Callable`接口**。**`Runnable` 接口**或 **`Callable` 接口** 实现类都可以被 **`ThreadPoolExecutor`** 或 **`ScheduledThreadPoolExecutor`** 执行。
+执行任务需要实现的 `Runnable` **接口** 或 **`Callable`接口**。**`Runnable` 接口**或 **`Callable` 接口** 实现类都可以被 **`ThreadPoolExecutor`** 或 **`ScheduledThreadPoolExecutor`** 执行。
 
 #### 2) 任务的执行(`Executor`)
 

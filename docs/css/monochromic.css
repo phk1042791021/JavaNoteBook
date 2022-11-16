@@ -1,0 +1,23 @@
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/jf_font.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fixes.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/base.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/rounding.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/smallercast.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/episodelist/episodes_compactlist.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/header/header_transparent-dashboard.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/login/login_minimalistic.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/fields/fields_border.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/cornerindicator/indicator_floating.css');
+@import url('https://phk-blog.synology.me:4431/css/dark.css');
+@import url('https://phk-blog.synology.me:4431/css/title_simple.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/bottombarprogress.css');
+@import url('https://cdn.jsdelivr.net/gh/CTalvio/Ultrachromic/effects/glassy.css');
+:root {--rounding: 12px;}
+
+/*Style backdrop*/
+.backdropImage {
+    filter: blur(10px) saturate(120%) contrast(120%) brightness(50%) !important;
+}
+.layout-desktop ::-webkit-scrollbar, .layout-tv ::-webkit-scrollbar{
+    width:0px !important;
+}
