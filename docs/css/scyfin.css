@@ -395,7 +395,9 @@
 .backgroundContainer.withBackdrop {
     background-color: rgba(0, 0, 0, 0.6) !important;
 }
-影片列表背景
+/*影片列表背景*/
 .withSectionTabs > .backgroundContainer.withBackdrop {
     background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(50px) !important;
+    -webkit-backdrop-filter: blur(2px) !important;
 }
